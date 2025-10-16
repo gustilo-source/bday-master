@@ -1,0 +1,208 @@
+@font-face {
+  font-family: 'FortalesiaPlain_PERSONAL_USE_ONLY';
+  src: url('fonts/FortalesiaPlain_PERSONAL_USE_ONLY.otf') format('opentype');
+}
+@font-face {
+  font-family: 'poppins';
+  src: url('fonts/poppins_regular.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Aston Script';
+  src: url('fonts/Aston Script.ttf') format('truetype');
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Jost", sans-serif;
+}
+
+body {
+  background: url('img/bg (2).png') no-repeat center center;
+  background-size: cover;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ======= MAIN CONTAINER ======= */
+.slider-container {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  padding: 40px 20px 100px;
+}
+
+.slider-images {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 21px;
+  position: relative;
+  flex-wrap: nowrap;
+}
+
+/* ======= POLAROID STYLE ======= */
+.slider-img {
+  width: 110px;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.6s ease;
+  overflow: hidden;
+  z-index: 3;
+  background: #fff;
+  padding: 10px 10px 35px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+}
+
+.slider-img:nth-child(odd) {
+  transform: rotate(-2deg);
+}
+
+.slider-img:nth-child(even) {
+  transform: rotate(2deg);
+}
+
+.slider-images img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* Active image expands */
+.slider-img.active {
+  width: 400px !important;
+  height: 450px !important;
+  transform: rotate(0deg) scale(1.05);
+}
+
+/* Headings inside */
+h1 {
+  font-size: 34px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  left: -5%;
+  transform: rotate(270deg);
+  transition: 0.5s ease;
+}
+
+.details {
+  position: absolute;
+  bottom: 43px;
+  left: 43px;
+}
+
+.details h2 {
+  font-size: 26px;
+  color:  #d14d75;
+  text-transform: uppercase;
+font-family: 'Akira Expanded Demo';
+
+  display: none;
+}
+
+.slider-img.active h1 {
+  display: none;
+}
+
+.slider-img.active .details h2 {
+  display: block;
+}
+
+/* ======= BUTTONS ======= */
+.gallery-btn-group {
+  width: 100%;
+  margin-top: 90px;
+  display: flex;
+  justify-content: center; /* Centers both buttons */
+  align-items: center;
+  gap: 50px; /* Controls the space between them */
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.btn {
+  background-color: #ff8fa6;
+  color: white;
+  text-decoration: none;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+  background-color: #d14d75;
+}
+
+/* ======= RESPONSIVE ======= */
+@media (max-width: 768px) {
+  .slider-container {
+    padding: 60px 10px 150px;
+  }
+
+  .slider-images {
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
+
+  .slider-img {
+    width: 85vw !important;
+    height: 200px !important;
+    transform: rotate(0deg);
+  }
+
+  .slider-img.active {
+    width: 90vw !important;
+    height: 300px !important;
+  }
+
+.gallery-btn-group {
+    justify-content: center;
+    gap: 190px; /* tighter space on mobile */
+    margin-top: 20px;
+      margin-bottom: -140px;
+  }
+
+  .btn {
+    width: auto;
+    font-size: 16px;
+  }
+}
+
+/* ======= FOOTER ======= */
+.footer {
+  background-color: #f8f9fa;
+  color: #fb6f92;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  font-family: 'FortalesiaPlain_PERSONAL_USE_ONLY';
+}
+
+.heart {
+  width: 16px;
+  height: 16px;
+  margin-left: 5px;
+  margin-top: -10px;
+}

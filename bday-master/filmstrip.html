@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Film Strip Layout</title>
+  <link rel="icon" type="img/x-icon" href="img/logo1.png" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <link rel="stylesheet" href="stylefilm.css" />
+</head>
+<body>
+  <!-- 🎞 Decorative Film Background -->
+  <div class="film-bg">
+    <div class="film-bg-strip">
+      <img src="img/film.png" alt="Film strip" class="film-bg-image" />
+    </div>
+    <div class="film-bg-strip film-bg-strip-two">
+      <img src="img/film.png" alt="Film strip" class="film-bg-image" />
+    </div>
+  </div>
+
+  <!-- 🎬 Main Film Container -->
+  <div class="film-container">
+    <!-- First Strip -->
+    <div class="film-strip">
+      <div class="film-image-wrapper">
+        <img src="img/0004.jpg" class="film-image" />
+        <img src="img/0005.jpg" class="film-image" />
+        <img src="img/0011.jpg" class="film-image" />
+        <img src="img/0012.jpg" class="film-image" />
+        <!-- Duplicate for infinite effect -->
+        <img src="img/0013.jpg" class="film-image" />
+        <img src="img/0017.jpg" class="film-image" />
+        <img src="img/0021.jpg" class="film-image" />
+        <img src="img/0022.jpg" class="film-image" />
+      </div>
+    </div>
+
+    <!-- Second Strip -->
+    <div class="film-strip-two">
+      <div class="film-image-wrapper">
+        <img src="img/0023.jpg" class="film-image" />
+        <img src="img/0025.jpg" class="film-image" />
+        <img src="img/0026.jpg" class="film-image" />
+        <img src="img/0027.jpg" class="film-image" />
+        <!-- Duplicate for infinite effect -->
+        <img src="img/0028.jpg" class="film-image" />
+        <img src="img/0030.png" class="film-image" />
+        <img src="img/0009.jpg" class="film-image" />
+        <img src="img/0008.jpg" class="film-image" />
+      </div>
+    </div>
+  </div>
+
+  <!-- 🎞️ Navigation Buttons -->
+  <div class="gallery-btn-group">
+    <a href="gallery2.html" class="btn">Back</a>
+    <a href="envelope.html" class="btn next">Next Slide</a>
+  </div>
+
+  <!-- 💖 Footer -->
+  <div class="footer">
+    Developed By: ihlapots &nbsp; | &nbsp; Made with 
+    <svg class="heart" viewBox="0 0 24 24" fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M2 9.1371C2 14 6.01943 16.5914 8.96173 18.9109C10 19.7294 11 20.5 12 20.5C13 20.5 14 19.7294 15.0383 18.9109C17.9806 16.5914 22 14 22 9.1371C22 4.27416 16.4998 0.825464 12 5.50063C7.50016 0.825464 2 4.27416 2 9.1371Z"
+        fill="#ff6999"></path>
+    </svg>
+  </div>
+</body>
+</html>

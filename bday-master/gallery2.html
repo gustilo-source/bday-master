@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday!</title>
+  <link rel="icon" type="img/x-icon" href="img/logo1.png">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <link rel="stylesheet" href="stylegallery2.css" />
+
+  <style>
+    /* Smooth fade transition when navigating */
+    body {
+      transition: opacity 0.6s ease;
+    }
+    body.fade-out {
+      opacity: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <section class="slider-container">
+    <div class="slider-images">
+      <div class="slider-img">
+        <img src="img/0010.jpg" alt="1" />
+        <h1>BUT</h1>
+        <div class="details"><h2>BUT</h2></div>
+      </div>
+
+      <div class="slider-img">
+        <img src="img/0015.jpg" alt="2" />
+        <h1>I'LL</h1>
+        <div class="details"><h2>I'LL</h2></div>
+      </div>
+
+      <div class="slider-img">
+        <img src="img/0016.jpg" alt="3" />
+        <h1>ALWAYS</h1>
+        <div class="details"><h2>ALWAYS</h2></div>
+      </div>
+
+      <div class="slider-img active">
+        <img src="img/0014.jpg" alt="4" />
+        <h1>BE</h1>
+        <div class="details"><h2>BE</h2></div>
+      </div>
+
+      <div class="slider-img">
+        <img src="img/0010.jpg" alt="5" />
+        <h1>THE</h1>
+        <div class="details"><h2>THE</h2></div>
+      </div>
+
+      <div class="slider-img">
+        <img src="img/0016.jpg" alt="6" />
+        <h1>LUCKY</h1>
+        <div class="details"><h2>LUCKY</h2></div>
+      </div>
+
+      <div class="slider-img">
+        <img src="img/0014.jpg" alt="7" />
+        <h1>ONE</h1>
+        <div class="details"><h2>ONE</h2></div>
+      </div>
+    </div>
+
+    <div class="gallery-btn-group">
+      <a href="gallery.html" class="btn">Back</a>
+      <a href="filmstrip.html" class="btn">Next Slide</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    Developed By: ihlapots &nbsp; | &nbsp; Made with 
+    <svg class="heart" viewBox="0 0 24 24" fill="none"
+      xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M2 9.1371C2 14 6.01943 16.5914 8.96173 18.9109C10 19.7294 11 20.5 12 20.5C13 20.5 14 19.7294 15.0383 18.9109C17.9806 16.5914 22 14 22 9.1371C22 4.27416 16.4998 0.825464 12 5.50063C7.50016 0.825464 2 4.27416 2 9.1371Z"
+        fill="#ff6999"></path>
+    </svg>
+  </footer>
+
+  <script>
+    // Expand active image on click
+    jQuery(document).ready(function ($) {
+      $(".slider-img").on("click touchstart", function () {
+        $(".slider-img").removeClass("active");
+        $(this).addClass("active");
+        this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    });
+
+    // Fade-out transition when navigating
+    document.querySelectorAll('a[href]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href && !href.startsWith('#') && !href.startsWith('javascript')) {
+          e.preventDefault();
+          document.body.classList.add('fade-out');
+          setTimeout(() => { window.location.href = href; }, 600);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polaroid + Envelope</title>
+    <link rel="icon" type="img/x-icon" href="img/logo1.png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <link rel="stylesheet" href="style-envelope.css">
+    <style>
+        /* Move the envelope up slightly so footer and buttons are visible */
+        .envelope-wrapper {
+            margin-top: 80px; /* previously 130px */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Polaroid group on the left (side by side) -->
+        <div class="polaroid-group">
+            <div class="polaroid polaroid-left">
+                <img src="img/0002.jpg" alt="Polaroid 1" style="width:100%; height:100%; object-fit: cover;">
+            </div>
+            <div class="polaroid polaroid-right">
+                <img src="img/0024.jpg" alt="Polaroid 2" style="width:100%; height:100%; object-fit: cover;">
+            </div>
+        </div>
+
+        <!-- Envelope on the right (closed by default) -->
+        <div class="envelope-wrapper">
+            <div class="envelope">
+                <div class="letter">
+                    <div class="text">
+                        <strong>Dear Ysabella! ,</strong>
+                        <p>
+                        Hi Ysa!!. I know you’ve been through a lot. I’m always here for you 😁
+
+                        Even when I’m boring, you still talk to me and miss me 🤭🙈 Keep smiling, you deserve happiness every day 💖
+
+                        Don’t overthink too much, if you’re sad, just say it. You can be weak on me, being you is more than enough 😁
+
+                        HAPPY BIRTHDAY AGAIN, BEBE! Wishing you the best, laging mag-iingat, and behave 😏😁 Love you!
+
+                        —IHLAPOTS
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="heart"></div>
+        </div>
+    </div>
+
+    <!-- 🎞️ Navigation Buttons -->
+    <div class="gallery-btn-group">
+        <a href="filmstrip.html" class="btn">Back</a>
+        <a href="music.html" class="btn next">Next Slide</a>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        Developed By: ihlapots &nbsp; | &nbsp; Made with 
+        <svg class="hearts" viewBox="0 0 24 24" fill="none"
+          xmlns="http://www.w3.org/2000/svg" stroke="">
+          <path
+            d="M2 9.1371C2 14 6.01943 16.5914 8.96173 18.9109C10 19.7294 11 20.5 12 20.5C13 20.5 14 19.7294 15.0383 18.9109C17.9806 16.5914 22 14 22 9.1371C22 4.27416 16.4998 0.825464 12 5.50063C7.50016 0.825464 2 4.27416 2 9.1371Z"
+            fill="#ff6999"></path>
+        </svg>
+    </div>
+
+    <script>
+        // Select the envelope wrapper
+        const envelopeWrapper = document.querySelector('.envelope-wrapper');
+
+        // Toggle flap on click
+        envelopeWrapper.addEventListener('click', () => {
+            envelopeWrapper.classList.toggle('flap');
+        });
+    </script>
+</body>
+</html>

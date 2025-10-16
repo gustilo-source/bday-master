@@ -2,20 +2,16 @@ document.addEventListener("DOMContentLoaded", function () {
   const cake = document.querySelector(".cake");
   const candleCountDisplay = document.getElementById("candleCount");
   let candles = [];
-  let audioContext;
-  let analyser;
-  let microphone;
+  let audioContext, analyser, microphone;
   let audio = new Audio('hbd.mp3');
+  let audioAllowed = false; // track if user interacted
 
   function updateCandleCount() {
-    const activeCandles = candles.filter(
-      (candle) => !candle.classList.contains("out")
-    ).length;
+    const activeCandles = candles.filter(c => !c.classList.contains("out")).length;
     candleCountDisplay.textContent = activeCandles;
   }
 
   function addCandle(left, top) {
-    // ✅ Limit candle count to 23
     if (candles.length >= 23) return;
 
     const candle = document.createElement("div");
@@ -37,6 +33,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const left = event.clientX - rect.left;
     const top = event.clientY - rect.top;
     addCandle(left, top);
+
+    // allow audio after first click
+    if (!audioAllowed) {
+      audioAllowed = true;
+      audio.play().catch(err => console.log("Audio blocked until user interaction."));
+    }
   });
 
   function isBlowing() {
@@ -45,45 +47,42 @@ document.addEventListener("DOMContentLoaded", function () {
     analyser.getByteFrequencyData(dataArray);
 
     let sum = 0;
-    for (let i = 0; i < bufferLength; i++) {
-      sum += dataArray[i];
-    }
+    for (let i = 0; i < bufferLength; i++) sum += dataArray[i];
     let average = sum / bufferLength;
 
-    return average > 80; //ETO CHANGEEEEEE
+    return average > 80;
   }
 
   function blowOutCandles() {
     let blownOut = 0;
 
-    if (candles.length > 0 && candles.some((candle) => !candle.classList.contains("out"))) {
+    if (candles.length > 0 && candles.some(c => !c.classList.contains("out"))) {
       if (isBlowing()) {
-        candles.forEach((candle) => {
-          if (!candle.classList.contains("out") && Math.random() > 0.5) {
-            candle.classList.add("out");
+        candles.forEach(c => {
+          if (!c.classList.contains("out") && Math.random() > 0.5) {
+            c.classList.add("out");
             blownOut++;
           }
         });
       }
 
-      if (blownOut > 0) {
-        updateCandleCount();
-      }
+      if (blownOut > 0) updateCandleCount();
 
-      if (candles.every((candle) => candle.classList.contains("out"))) {
-        setTimeout(function() {
+      if (candles.every(c => c.classList.contains("out"))) {
+        setTimeout(() => {
           triggerConfetti();
           endlessConfetti();
+
+          // play audio if allowed
+          if (audioAllowed) audio.play().catch(err => console.log("Audio blocked"));
         }, 200);
-        audio.play();
       }
     }
   }
 
   if (navigator.mediaDevices.getUserMedia) {
-    navigator.mediaDevices
-      .getUserMedia({ audio: true })
-      .then(function (stream) {
+    navigator.mediaDevices.getUserMedia({ audio: true })
+      .then(stream => {
         audioContext = new (window.AudioContext || window.webkitAudioContext)();
         analyser = audioContext.createAnalyser();
         microphone = audioContext.createMediaStreamSource(stream);
@@ -91,64 +90,18 @@ document.addEventListener("DOMContentLoaded", function () {
         analyser.fftSize = 256;
         setInterval(blowOutCandles, 200);
       })
-      .catch(function (err) {
-        console.log("Unable to access microphone: " + err);
-      });
+      .catch(err => console.log("Unable to access microphone: " + err));
   } else {
     console.log("getUserMedia not supported on your browser!");
   }
-});
 
-function triggerConfetti() {
-  confetti({
-    particleCount: 100,
-    spread: 70,
-    origin: { y: 0.6 }
-  });
-}
-
-function endlessConfetti() {
-  setInterval(function() {
-    confetti({
-      particleCount: 200,
-      spread: 90,
-      origin: { y: 0 }
-    });
-  }, 1000);
-}
-
-document.querySelectorAll('a[href]').forEach(link => {
-  link.addEventListener('click', function(e) {
-    const href = this.getAttribute('href');
-    if (href && !href.startsWith('#') && !href.startsWith('javascript')) {
-      e.preventDefault();
-      document.body.classList.add('fade-out');
-      setTimeout(() => {
-        window.location.href = href;
-      }, 600);
-    }
-  });
-});
-
-// Wait until DOM is loaded
-document.addEventListener("DOMContentLoaded", () => {
-  const instructionsPanel = document.querySelector(".instructions-panel");
-  const cake = document.querySelector(".cake");
-
-  // Track if instructions are hidden
-  let instructionsHidden = false;
-
-  // Function to hide instructions
-  function hideInstructions() {
-    if (!instructionsHidden) {
-      instructionsPanel.style.display = "none";
-      instructionsHidden = true;
-    }
+  function triggerConfetti() {
+    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
   }
 
-  // Example: add a candle when cake is clicked
-  cake.addEventListener("click", () => {
-    hideInstructions();
-
-  });
+  function endlessConfetti() {
+    setInterval(() => {
+      confetti({ particleCount: 200, spread: 90, origin: { y: 0 } });
+    }, 1000);
+  }
 });
